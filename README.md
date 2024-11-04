@@ -5,8 +5,8 @@ Requirements
 ---------
 ```bash
     pip install tensorboard
-``` pip install torch==2.0.1 torchtext==0.15.2
-
+    pip install torch==2.0.1 torchtext==0.15.2
+```
 How to run
 ----------
 
