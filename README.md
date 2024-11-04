@@ -23,4 +23,4 @@ How to run
 
 #### run script
 ``` bash
-python examples/pytorch/nmt/main.py --name test
+python nmt/main.py --name test
