@@ -1,6 +1,7 @@
 import pickle
 import nltk
 import torch
+import pandas as pd
 
 from graph4nlp.pytorch.data.dataset import Text2TextDataItem, Text2TextDataset
 from graph4nlp.pytorch.modules.utils.padding_utils import pad_2d_vals_no_size
@@ -9,6 +10,34 @@ from graph4nlp.pytorch.modules.utils.padding_utils import pad_2d_vals_no_size
 class IWSLT14Dataset(Text2TextDataset):
     @property
     def raw_file_names(self):
+
+        test_path = "nmt/data/raw/_test.csv" 
+        val_path = "nmt/data/raw/_val.csv" 
+        train_path = "nmt/data/raw/_train.csv"  
+
+        test_csv = pd.read_csv(test_path)
+        val_csv = pd.read_csv(val_path)
+        train_csv = pd.read_csv(train_path)
+              
+              
+        test_data = list(test_csv.itertuples(index=False, name=None))
+        # Save the formatted data to a pickle file
+        test_pkl = "nmt/data/raw/test.pkl"
+        with open(test_pkl, "wb") as f:
+            pickle.dump(test_data, f)
+
+        train_data = list(train_csv.itertuples(index=False, name=None))
+        # Save the formatted data to a pickle file
+        train_pkl = "nmt/data/raw/train.pkl" 
+        with open(train_pkl, "wb") as f:
+            pickle.dump(train_data, f)
+
+        val_data = list(val_csv.itertuples(index=False, name=None))
+        # Save the formatted data to a pickle file
+        val_pkl = "nmt/data/raw/val.pkl"
+        with open(val_pkl, "wb") as f:
+            pickle.dump(val_data, f)
+
         """3 reserved keys: 'train', 'val' (optional), 'test'. Represent the split of dataset."""
         if self.for_inference:
             return {"test": "test.pkl"}
